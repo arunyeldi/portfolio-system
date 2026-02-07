@@ -1,8 +1,17 @@
-import app from "./app";
+import path from "path";
+import dotenv from "dotenv";
 
-// [ERROR] 02:04:12 RangeError: options.port should be >= 0 and < 65536. Received type number (32782348).
-const PORT = 9999; 
+dotenv.config({
+  path: path.resolve(__dirname, "../.env"),
+});
+
+import app from "./app";
+import connectDB from "./config/db";
+
+const PORT = 8000;
+
+connectDB();
 
 app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
+  console.log(`Server running on port ${PORT}`);
 });
