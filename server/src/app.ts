@@ -1,23 +1,11 @@
 import express from "express";
+import projectRoutes from "./routes/project.route";
 
 const app = express();
 
-app.get("/", (req, res) => {
-    res.send("Backend is working");
-});
+app.use(express.json());
 
-app.get("/health", (req, res) => {
-    res.send("Server is healthy");
-});
-
-app.get("/about", (req, res) => {
-    res.send("This is about route");
-    console.log(req.method);
-    console.log(req.url);
-});
-
-app.get("/time", (req, res) => {
-    res.send("This is time route");
-});
+// THIS LINE IS CRITICAL
+app.use("/api", projectRoutes);
 
 export default app;
