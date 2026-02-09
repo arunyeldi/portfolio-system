@@ -8,4 +8,5 @@ app.use(express.json());
 // THIS LINE IS CRITICAL
 app.use("/api", projectRoutes);
 
+
 export default app;
