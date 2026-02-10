@@ -1,20 +1,17 @@
 import { Request, Response } from "express";
 import { createProject, getAllProjects } from "../services/project.service";
+import AppError from "../utils/AppError";
 
 export const createProjectController = async (req: Request, res: Response) => {
   try {
     const { title, techStack } = req.body;
 
     if (!title || title.trim() === "") {
-      return res.status(400).json({
-        message: "Title is required",
-      });
+      throw new AppError("Title is required", 400);
     }
 
     if (!Array.isArray(techStack) || techStack.length === 0) {
-      return res.status(400).json({
-        message: "At least one technology is required",
-      });
+      throw new AppError("At least one technology is required", 400);
     }
 
     const project = await createProject(req.body);
